@@ -7,9 +7,9 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CategoryController extends Controller
 {
@@ -21,7 +21,7 @@ class CategoryController extends Controller
             return ApiResponse::success('Lista de Categorias', 200, $categories);
 
         } catch(Exception $e){
-            return ApiResponse::error('Error al obtener la lista de categorias: '.$e->getMessage(), 500);
+            return ApiResponse::error('Error al obtener la lista de Categorias: '.$e->getMessage(), 500);
         }
        
     }
@@ -59,7 +59,7 @@ class CategoryController extends Controller
         } catch (ModelNotFoundException $e) {
             return ApiResponse::error('Categoria no encontrada', 404);
         } catch (Exception $e){
-            return ApiResponse::error('Error al obtener la lista de categorias: '.$e->getMessage(), 500);
+            return ApiResponse::error('Error al obtener la lista de Categorias: '.$e->getMessage(), 500);
 
         }
     }
