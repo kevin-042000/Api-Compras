@@ -64,4 +64,17 @@ class CategoryController extends Controller
         }
     }
 
+    public function destroy($id)
+    {
+        try{
+            $categoria = Category::findOrFail($id);
+            $categoria->delete();
+            return ApiResponse::success('Categoria eliminada exitosamente', 200);
+        } catch(ModelNotFoundException $e) {
+            return ApiResponse::error('Categoria no encontrada', 404);
+
+        }
+
+    }
+
 }
