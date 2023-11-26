@@ -72,9 +72,18 @@ class CategoryController extends Controller
             return ApiResponse::success('Categoria eliminada exitosamente', 200);
         } catch(ModelNotFoundException $e) {
             return ApiResponse::error('Categoria no encontrada', 404);
-
         }
+    }
 
+    public function productsByCategory($id)
+    {
+        try{
+            $categoria = Category::with('products')->findOrFail($id);
+            return  ApiResponse::success('Categoria y lista de productos', 200, $categoria);
+
+        } catch(ModelNotFoundException $e) {
+            return ApiResponse::error('Categoria no encontrada', 404);
+        }
     }
 
 }

@@ -29,8 +29,8 @@ class BrandController extends Controller
     public function store(StoreBrandRequest $request)
     {
        try{
-        $marcas = Brand::create($request->all());
-        return ApiResponse::success('Marca creada exitosamente', 201, $marcas);
+        $marca = Brand::create($request->all());
+        return ApiResponse::success('Marca creada exitosamente', 201, $marca);
 
        } catch(ValidationException $e){
         return ApiResponse::error('Error de validacion: '.$e->getMessage(), 422);
@@ -40,8 +40,8 @@ class BrandController extends Controller
     public function show($id)
     {
         try{
-            $marcas = Brand::findOrFail($id);
-            return ApiResponse::success('Marca obtinida exitosamente', 200, $marcas);
+            $marca = Brand::findOrFail($id);
+            return ApiResponse::success('Marca obtinida exitosamente', 200, $marca);
 
         } catch(ModelNotFoundException $e){
             return ApiResponse::error('Marca no encontrada', 404);
@@ -52,9 +52,9 @@ class BrandController extends Controller
     public function update(UpdateBrandRequest $request, $id)
     {
         try {
-            $marcas = Brand::findOrFail($id); 
-            $marcas->update($request->all());
-            return ApiResponse::success('Marca actualizada exitosamente', 200, $marcas);
+            $marca = Brand::findOrFail($id); 
+            $marca->update($request->all());
+            return ApiResponse::success('Marca actualizada exitosamente', 200, $marca);
     
         } catch (ModelNotFoundException $e) {
             return ApiResponse::error('Marca no encontrada', 404);
@@ -74,7 +74,18 @@ class BrandController extends Controller
             return ApiResponse::error('Marca no encontrada', 404);
 
         }
+    }
 
+
+    public function productsByBrand($id)
+    {
+        try{
+            $marca = Brand::with('products')->findOrFail($id);
+            return  ApiResponse::success('Marca y lista de productos', 200, $marca);
+
+        } catch(ModelNotFoundException $e) {
+            return ApiResponse::error('Marca no encontrada', 404);
+        }
     }
 
 }
