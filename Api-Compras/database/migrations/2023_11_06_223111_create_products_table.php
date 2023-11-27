@@ -12,16 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->string('description')->nullable();
-            $table->decimal('price', 8, 2);
-            $table->integer('quantity_available');
-            $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('brand_id');
-            $table->timestamps();
-            $table->timestamps();
- 
+            $table->id(); // Columna de clave primaria autoincremental
+            $table->string('name')->unique(); // Nombre del producto, único para cada producto
+            $table->string('description')->nullable(); // Descripción del producto (puede ser nulo)
+            $table->decimal('price', 8, 2); // Precio del producto con 8 dígitos en total, 2 decimales
+            $table->integer('quantity_available'); // Cantidad disponible del producto
+            $table->unsignedBigInteger('category_id'); // Clave foránea para la relación con 'categories'
+            $table->unsignedBigInteger('brand_id'); // Clave foránea para la relación con 'brands'
+            $table->timestamps(); // Columnas para registrar la fecha y hora de creación y actualización del registro
+            
+            // Definimos las claves foráneas para mantener la integridad referencial
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('brand_id')->references('id')->on('brands');
             

@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('brands', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->string('description')->nullable();
-            $table->timestamps();
+            $table->id(); // Columna de clave primaria autoincremental
+            $table->string('name')->unique(); // Nombre de la marca, único para cada marca
+            $table->string('description')->nullable(); // Descripción de la marca (puede ser nula)
+            $table->timestamps(); // Columnas para registrar la fecha y hora de creación y actualización del registro
         });
     }
 

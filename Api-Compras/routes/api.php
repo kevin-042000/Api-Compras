@@ -7,11 +7,16 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 
-//Rutas para Categoria
+// Rutas para Categoría
 Route::apiResource('categorias', CategoryController::class);
-Route::apiResource('marcas', BrandController::class);
-Route::apiResource('productos', ProductController::class);
-Route::apiResource('compras', PurchaseController::class);
+Route::get('categorias/{categoria}/productos', [CategoryController::class, 'productsByCategory']);
 
-Route::get('categorias/{categoria}/productos', [CategoryController::class,'productsByCategory']);
-Route::get('marcas/{marca}/productos', [BrandController::class,'productsByBrand']);
+// Rutas para Marca
+Route::apiResource('marcas', BrandController::class);
+Route::get('marcas/{marca}/productos', [BrandController::class, 'productsByBrand']);
+
+// Rutas para Producto
+Route::apiResource('productos', ProductController::class);
+
+// Rutas para Compra
+Route::apiResource('compras', PurchaseController::class);
