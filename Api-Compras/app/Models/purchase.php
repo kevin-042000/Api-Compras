@@ -13,6 +13,9 @@ class Purchase extends Model
         'subtotal', 'total'
     ];
 
+    
+    //Define la relación "belongsToMany" con el modelo Product a través de la tabla purchase_products.
+    
     public function products()
     {
         return $this->belongsToMany(Product::class, 'purchase_products')
