@@ -15,19 +15,19 @@ class Product extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class); // Un Producto pertenece a una única categoría.
+        return $this->belongsTo(Category::class);
     }
 
     public function brand()
     {
-        return $this->belongsTo(Brand::class); // Un Producto pertenece a una única marca.
+        return $this->belongsTo(Brand::class);
     }
 
     public function purchases()
     {
-        return $this->belongsToMany(Purchase::class)
+        return $this->belongsToMany(Purchase::class, 'purchase_products')
             ->withPivot('price', 'quantity', 'subtotal')
-            ->withTimestamps(); // Un Producto puede pertenecer a varias instancias de Compra, y viceversa.
+            ->withTimestamps();
     }
 }
 

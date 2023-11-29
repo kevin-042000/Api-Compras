@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id(); // Columna de clave primaria autoincremental
-    $table->decimal('subtotal', 8, 2); // Subtotal de la compra con 8 dígitos en total, 2 decimales
-    $table->decimal('total'); // Total de la compra (presumiblemente sin límite de dígitos)
-    $table->timestamps(); // Columnas para registrar la fecha y hora de creación y actualización del registro
+            $table->decimal('subtotal', 8, 2); // Subtotal de la compra con 8 dígitos en total, 2 decimales
+            $table->decimal('total'); // Total de la compra (presumiblemente sin límite de dígitos)
+            $table->timestamps(); // Columnas para registrar la fecha y hora de creación y actualización del registro
         });
     }
 

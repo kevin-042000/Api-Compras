@@ -42,7 +42,7 @@ class ProductController extends Controller
     public function show($id)
     {
         try{
-            $producto = Product::with('brand','category')->findOrFail($id);
+            $producto = Product::findOrFail($id);
             return ApiResponse::success('Producto obtinido exitosamente', 200, $producto);
 
         } catch(ModelNotFoundException $e){
